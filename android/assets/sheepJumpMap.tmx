@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="80" height="10" tilewidth="70" tileheight="70" nextobjectid="1">
+ <tileset firstgid="1" name="tileset" tilewidth="70" tileheight="146" tilecount="15" columns="0">
+  <tile id="0">
+   <image width="70" height="70" source="box.png"/>
+  </tile>
+  <tile id="1">
+   <image width="70" height="70" source="boxAlt.png"/>
+  </tile>
+  <tile id="2">
+   <image width="70" height="70" source="bridgeLogs.png"/>
+  </tile>
+  <tile id="3">
+   <image width="70" height="70" source="bush.png"/>
+  </tile>
+  <tile id="4">
+   <image width="70" height="70" source="fence.png"/>
+  </tile>
+  <tile id="5">
+   <image width="70" height="70" source="fenceBroken.png"/>
+  </tile>
+  <tile id="6">
+   <image width="70" height="70" source="grassCenter.png"/>
+  </tile>
+  <tile id="7">
+   <image width="70" height="70" source="grassMid.png"/>
+  </tile>
+  <tile id="8">
+   <image width="48" height="146" source="hill_large.png"/>
+  </tile>
+  <tile id="9">
+   <image width="48" height="146" source="hill_largeAlt.png"/>
+  </tile>
+  <tile id="10">
+   <image width="48" height="106" source="hill_small.png"/>
+  </tile>
+  <tile id="11">
+   <image width="48" height="106" source="hill_smallAlt.png"/>
+  </tile>
+  <tile id="12">
+   <image width="70" height="70" source="mushroomRed.png"/>
+  </tile>
+  <tile id="13">
+   <image width="70" height="70" source="plant.png"/>
+  </tile>
+  <tile id="14">
+   <image width="70" height="70" source="rock.png"/>
+  </tile>
+ </tileset>
+ <tileset firstgid="16" name="bg" tilewidth="70" tileheight="70" tilecount="9" columns="3">
+  <image source="bg.png" width="256" height="256"/>
+ </tileset>
+ <layer name="background" width="80" height="10">
+  <data encoding="base64" compression="zlib">
+   eJzt0DEBAAAIhMCP4GD/rLaQHxgIwE2SKW7Lo33006852kc//ZqjffTTrznah/Sj3z46YZI4hQ==
+  </data>
+ </layer>
+ <layer name="background_items" width="80" height="10">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20LL6AAAAA+BgyAAAE=
+  </data>
+ </layer>
+ <layer name="foreground" width="80" height="10">
+  <data encoding="base64" compression="zlib">
+   eJztyCEOAAAIxLCT8P8P40lQ2DaZWQIAAGx9/NKrAa2nAoo=
+  </data>
+ </layer>
+</map>
