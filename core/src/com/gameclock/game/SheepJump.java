@@ -29,7 +29,8 @@ public class SheepJump implements ApplicationListener {
         Gdx.input.setInputProcessor(new SJInputProcessor());
 
 		res = new SJContent();
-		res.loadTexture("bunny.png", "player");
+		res.loadTexture("android/assets/bunny.png", "player");
+		res.loadTexture("android/assets/box.png", "obstacle");
 		batch = new SpriteBatch();
         cam = new OrthographicCamera();
         cam.setToOrtho(false, V_WIDTH, V_HEIGHT);

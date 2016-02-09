@@ -17,12 +17,13 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.gameclock.game.GameStateManager;
 import com.gameclock.game.SheepJump;
+import com.gameclock.game.entities.Obstacle;
 import com.gameclock.game.entities.Player;
 import com.gameclock.game.handlers.B2DVars;
 import com.gameclock.game.handlers.SJContactListener;
 import com.gameclock.game.handlers.SJInput;
 
-;
+;import java.util.ArrayList;
 
 /**
  * Created by Jason on 2/5/2016.
@@ -33,6 +34,7 @@ public class Play extends com.gameclock.game.State.GameState {
     private Box2DDebugRenderer dDebugRenderer;
     private OrthographicCamera b2dCam;
     private Player player;
+    private ArrayList<Obstacle> obstacles;
     private SJContactListener contactListener;
 
     private TiledMap tiledMap;
@@ -48,6 +50,7 @@ public class Play extends com.gameclock.game.State.GameState {
         contactListener = new SJContactListener();
         world.setContactListener(contactListener);
         dDebugRenderer = new Box2DDebugRenderer();
+        obstacles = new ArrayList<Obstacle>();
         createPlayer();
         createTiles();
     }
@@ -58,7 +61,7 @@ public class Play extends com.gameclock.game.State.GameState {
         //player jump
         if (SJInput.isPressed(SJInput.BUTTON1)) {
             if (contactListener.isOnGround())
-                player.getBody().applyForceToCenter(0, 200, true);
+                player.getBody().applyForceToCenter(0, 250, true);
             else if (!contactListener.hasBoosted()) {
                 contactListener.boost();
                 player.getBody().setLinearVelocity(2f, 0);
@@ -72,6 +75,9 @@ public class Play extends com.gameclock.game.State.GameState {
         handleInput();
         world.step(dt, 6, 2);
         player.update(dt);
+        for (Obstacle obstacle : obstacles) {
+            obstacle.update(dt);
+        }
     }
 
     @Override
@@ -94,16 +100,15 @@ public class Play extends com.gameclock.game.State.GameState {
 
         sb.setProjectionMatrix(cam.combined);
         player.render(sb);
-
+        for (Obstacle obstacle : obstacles)
+                obstacle.render(sb);
         //draw box2d world
         b2dCam.position.set(
                 player.getPosition().x * B2DVars.PPM + SheepJump.V_WIDTH / 4,
                 SheepJump.V_HEIGHT / 2,
-                0
-        );
+                0);
         b2dCam.update();
         dDebugRenderer.render(world, b2dCam.combined);
-
     }
 
     @Override
@@ -134,7 +139,7 @@ public class Play extends com.gameclock.game.State.GameState {
         shape.setAsBox(13 / B2DVars.PPM, 2 / B2DVars.PPM, new Vector2(0, -13 / B2DVars.PPM), 0);
         fixtureDef.shape = shape;
         fixtureDef.filter.categoryBits = B2DVars.BIT_PLAYER;
-        fixtureDef.filter.maskBits = B2DVars.BIT_GROUND;
+        fixtureDef.filter.maskBits = -1;
         fixtureDef.isSensor = true;
         body.createFixture(fixtureDef).setUserData("foot");
         //Set up box 2d cam
@@ -147,7 +152,7 @@ public class Play extends com.gameclock.game.State.GameState {
 
     private void createTiles() {
         //load tile map
-        tiledMap = new TmxMapLoader().load("sheepJumpMap.tmx");
+        tiledMap = new TmxMapLoader().load("android/assets/sheepJumpMap.tmx");
 
         tmr = new OrthogonalTiledMapRenderer(tiledMap);
 
@@ -155,8 +160,6 @@ public class Play extends com.gameclock.game.State.GameState {
 
         tileSize = groundLayer.getTileWidth();
         createLayer(groundLayer, B2DVars.BIT_GROUND);
-
-
     }
 
     private void createLayer(TiledMapTileLayer layer, short bits) {
@@ -171,7 +174,7 @@ public class Play extends com.gameclock.game.State.GameState {
 
                 bodyDef.type = BodyDef.BodyType.StaticBody;
                 bodyDef.position.set(
-                        (col + 0.5f) * tileSize / B2DVars.PPM,
+                        (col) * tileSize / B2DVars.PPM,
                         (row + 0.5f) * tileSize / B2DVars.PPM
                 );
 
@@ -192,7 +195,25 @@ public class Play extends com.gameclock.game.State.GameState {
                 fixtureDef.filter.maskBits = -1;
                 fixtureDef.isSensor = false;
                 world.createBody(bodyDef).createFixture(fixtureDef);
-
+                int box =(int) (Math.random()*4);
+                if (box == 3) {
+                    PolygonShape shape = new PolygonShape();
+                    shape.setAsBox(35 / B2DVars.PPM, 35 / B2DVars.PPM);
+                    fixtureDef.friction = 0;
+                    fixtureDef.shape = shape;
+                    //fixtureDef.filter.categoryBits = B2DVars.BIT_OBSTACLE;
+                    fixtureDef.filter.maskBits = -1;
+                    bodyDef.type = BodyDef.BodyType.StaticBody;
+                    bodyDef.position.set(
+                            (col + 1f) * tileSize / B2DVars.PPM,
+                            (row + 1.5f) * tileSize / B2DVars.PPM
+                    );
+                    Body body = world.createBody(bodyDef);
+                    body.setUserData("obstacle");
+                    body.createFixture(fixtureDef);
+                    obstacles.add(new Obstacle(body));
+                    System.out.println(tileSize);
+                }
             }
         }
     }
