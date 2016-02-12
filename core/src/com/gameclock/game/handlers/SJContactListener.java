@@ -19,18 +19,14 @@ public class SJContactListener implements ContactListener {
     public void beginContact(Contact contact) {
         Fixture fa = contact.getFixtureA();
         Fixture fb = contact.getFixtureB();
-
         if (fa.getUserData() != null && fa.getUserData().equals("foot")) {
             numFootContacts++;
             boost = false;
-            fa.getBody().setLinearVelocity(.65f, 0);
         }
         if (fb.getUserData() != null && fb.getUserData().equals("foot")) {
             numFootContacts++;
             boost = false;
-            fb.getBody().setLinearVelocity(.65f, 0);
         }
-
 
     }
 

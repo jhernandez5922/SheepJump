@@ -16,4 +16,11 @@ public class B2DVars {
     public static final short BIT_PLAYER = 4;
     public static final short BIT_OBSTACLE = 8;
 
+    public static final float START_WIDTH = 160;
+    public static final float START_HEIGHT = 200;
+    public static final float END_WIDTH = 5300;
+
+    public static final String PATH_TO_MAP = "android/assets/sheepJumpMap.tmx";
+
+
 }

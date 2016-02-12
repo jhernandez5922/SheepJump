@@ -17,6 +17,12 @@ public class SJInputProcessor extends InputAdapter {
         else if (keycode == Input.Keys.J) {
             SJInput.setKey(SJInput.BUTTON2, true);
         }
+        else if (keycode == Input.Keys.D) {
+            SJInput.setKey(SJInput.FORWARD_BUTTON, true);
+        }
+        else if (keycode == Input.Keys.A) {
+            SJInput.setKey(SJInput.BACKWARD_BUTTON, true);
+        }
         return true;
     }
 
@@ -27,6 +33,12 @@ public class SJInputProcessor extends InputAdapter {
         }
         else if (keycode == Input.Keys.J) {
             SJInput.setKey(SJInput.BUTTON2, false);
+        }
+        else if (keycode == Input.Keys.D) {
+            SJInput.setKey(SJInput.FORWARD_BUTTON, false);
+        }
+        else if (keycode == Input.Keys.A) {
+            SJInput.setKey(SJInput.BACKWARD_BUTTON, false);
         }
         return true;
     }

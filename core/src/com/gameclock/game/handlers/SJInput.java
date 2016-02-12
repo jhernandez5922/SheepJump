@@ -8,9 +8,11 @@ public class SJInput {
     public static boolean [] keys;
     public static boolean [] pKeys;
 
-    public static final int NUM_KEYS = 2;
+    public static final int NUM_KEYS = 4;
     public static final int BUTTON1 = 0;
     public static final int BUTTON2 = 1;
+    public static final int FORWARD_BUTTON = 2;
+    public static final int BACKWARD_BUTTON = 3;
 
     static {
         keys = new boolean[NUM_KEYS];
