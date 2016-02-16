@@ -27,7 +27,6 @@ public class SJContactListener implements ContactListener {
             numFootContacts++;
             boost = false;
         }
-
     }
 
     //Called when two fixtures no longer collide
@@ -37,7 +36,6 @@ public class SJContactListener implements ContactListener {
         Fixture fb = contact.getFixtureB();
         if (fa.getUserData() != null && fa.getUserData().equals("foot")) {
             numFootContacts--;
-
         }
         if (fb.getUserData() != null && fb.getUserData().equals("foot")) {
             numFootContacts--;

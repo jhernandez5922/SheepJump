@@ -8,6 +8,33 @@ import com.badlogic.gdx.InputAdapter;
  */
 public class SJInputProcessor extends InputAdapter {
 
+    public boolean mouseMoved(int x, int y) {
+        SJInput.x = x;
+        SJInput.y = y;
+        return true;
+    }
+
+    public boolean touchDragged(int x, int y, int pointer) {
+        SJInput.x = x;
+        SJInput.y = y;
+        SJInput.down = true;
+        return true;
+    }
+
+    public boolean touchDown(int x, int y, int pointer, int button) {
+        SJInput.x = x;
+        SJInput.y = y;
+        SJInput.down = true;
+        return true;
+    }
+
+    public boolean touchUp(int x, int y, int pointer, int button) {
+        SJInput.x = x;
+        SJInput.y = y;
+        SJInput.down = false;
+        return true;
+    }
+
     @Override
     public boolean keyDown(int keycode) {
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="80" height="10" tilewidth="70" tileheight="70" nextobjectid="1">
- <tileset firstgid="1" name="tileset" tilewidth="70" tileheight="146" tilecount="15" columns="0">
+ <tileset firstgid="1" name="tileset" tilewidth="128" tileheight="146" tilecount="21" columns="0">
   <tile id="0">
    <image width="70" height="70" source="box.png"/>
   </tile>
@@ -46,23 +46,46 @@
   <tile id="14">
    <image width="70" height="70" source="rock.png"/>
   </tile>
+  <tile id="21">
+   <image width="70" height="70" source="castleCenter.png"/>
+  </tile>
+  <tile id="22">
+   <image width="70" height="70" source="door_openMid.png"/>
+  </tile>
+  <tile id="23">
+   <image width="70" height="70" source="door_openTop.png"/>
+  </tile>
+  <tile id="24">
+   <image width="70" height="70" source="signExit.png"/>
+  </tile>
+  <tile id="25">
+   <image width="70" height="70" source="tochLit.png"/>
+  </tile>
+  <tile id="26">
+   <image width="128" height="71" source="cloud1.png"/>
+  </tile>
  </tileset>
- <tileset firstgid="16" name="bg" tilewidth="70" tileheight="70" tilecount="9" columns="3">
+ <tileset firstgid="28" name="bg" tilewidth="70" tileheight="70" tilecount="9" columns="3">
   <image source="bg.png" width="256" height="256"/>
  </tileset>
  <layer name="background" width="80" height="10">
   <data encoding="base64" compression="zlib">
-   eJzt0DEBAAAIhMCP4GD/rLaQHxgIwE2SKW7Lo33006852kc//ZqjffTTrznah/Sj3z46YZI4hQ==
+   eJzt0DEBAAAIhMAP4mD/lLaQHxgIwE2SKW7Lo33006852kc//ZqjffTTrznah/Sj3z46GldeBQ==
   </data>
  </layer>
  <layer name="background_items" width="80" height="10">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20LL6AAAAA+BgyAAAE=
+   eJzt0LENADAIxMCfgob990xLC07pk7yAO0nbuYouaqQ9/zH+Y/zH+I/xH+M/xnd/PNQwCoE=
   </data>
  </layer>
  <layer name="foreground" width="80" height="10">
   <data encoding="base64" compression="zlib">
-   eJztyCEOAAAIxLCT8P8P40lQ2DaZWQIAAGx9/NKrAa2nAoo=
+   eJztwzEJAAAMA7Ce9a+4FgZ7E0gCAABc1dcBoY8CgQ==
+  </data>
+ </layer>
+ <layer name="exit" width="80" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwSgYBSMFSAy0A4YokITS4gPqiuEBAIZoAEk=
   </data>
  </layer>
 </map>

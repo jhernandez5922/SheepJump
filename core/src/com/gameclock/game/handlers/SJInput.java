@@ -5,6 +5,12 @@ package com.gameclock.game.handlers;
  */
 public class SJInput {
 
+    public static int x;
+    public static int y;
+    public static boolean down;
+    public static boolean pdown;
+
+
     public static boolean [] keys;
     public static boolean [] pKeys;
 
@@ -20,6 +26,7 @@ public class SJInput {
     }
 
     public static void update() {
+        pdown = down;
         System.arraycopy(keys, 0, pKeys, 0, NUM_KEYS);
     }
 
@@ -27,4 +34,9 @@ public class SJInput {
     public static void setKey(int i, boolean b) {keys[i] = b;}
     public static boolean isDown(int i) { return keys[i];}
     public static boolean isPressed(int i ) {return keys[i] && !pKeys[i];}
+
+    public static boolean isDown() { return down; }
+    public static boolean isPressed() { return down && !pdown; }
+    public static boolean isReleased() { return !down && pdown; }
+
 }

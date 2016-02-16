@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.gameclock.game.handlers.B2DVars;
 import com.gameclock.game.handlers.SJContent;
 import com.gameclock.game.handlers.SJInput;
 import com.gameclock.game.handlers.SJInputProcessor;
@@ -29,8 +30,8 @@ public class SheepJump implements ApplicationListener {
         Gdx.input.setInputProcessor(new SJInputProcessor());
 
 		res = new SJContent();
-		res.loadTexture("android/assets/bunny.png", "player");
-		res.loadTexture("android/assets/box.png", "obstacle");
+		res.loadTexture(B2DVars.DESKTOP_PATH+"bunny.png", "player");
+		res.loadTexture(B2DVars.DESKTOP_PATH+"box.png", "obstacle");
 		batch = new SpriteBatch();
         cam = new OrthographicCamera();
         cam.setToOrtho(false, V_WIDTH, V_HEIGHT);
