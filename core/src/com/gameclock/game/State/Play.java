@@ -43,7 +43,7 @@ public class Play extends com.gameclock.game.State.GameState {
     private TiledMap tiledMap;
     private float tileSize;
     private OrthogonalTiledMapRenderer tmr;
-
+    private float xPos;
 
     public Play(GameStateManager gsm) {
         super(gsm);
@@ -101,11 +101,14 @@ public class Play extends com.gameclock.game.State.GameState {
     }
 
     public void moveForward() {
-        if (contactListener.isOnGround())
+        player.setStationary(false);
+        if (contactListener.isOnGround()) {
             player.getBody().setLinearVelocity(.65f, player.getBody().getLinearVelocity().y);
+        }
     }
 
     public void moveBackwards() {
+        player.setStationary(false);
         if (contactListener.isOnGround())
             player.getBody().setLinearVelocity(-.65f, player.getBody().getLinearVelocity().y);
         else {
@@ -119,13 +122,23 @@ public class Play extends com.gameclock.game.State.GameState {
     }
     public void stopMoving() {
         //if on the ground, do not move in x direction while preserving y velocity
-        if (contactListener.isOnGround())
+        if (contactListener.isOnGround()) {
             player.getBody().setLinearVelocity(0, player.getBody().getLinearVelocity().y);
+            player.setStationary(true);
+        }
     }
     @Override
     public void update(float dt) {
         handleInput();
         world.step(dt, 6, 2);
+        //set camera to follow player, unless at border
+        xPos = player.getPosition().x * B2DVars.PPM + SheepJump.V_WIDTH / 4;
+        //if at beginning
+        if (xPos <= B2DVars.START_WIDTH + SheepJump.V_WIDTH / 4)
+            xPos = B2DVars.START_WIDTH + SheepJump.V_WIDTH / 4;
+            //if at end
+        else if (xPos >= B2DVars.END_WIDTH)
+            xPos = B2DVars.END_WIDTH;
         player.update(dt);
         //update obstacles
         for (Obstacle obstacle : obstacles) {
@@ -136,14 +149,6 @@ public class Play extends com.gameclock.game.State.GameState {
     public void render() {
         //clear screen
         Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        //set camera to follow player, unless at border
-        float xPos = player.getPosition().x * B2DVars.PPM + SheepJump.V_WIDTH / 4;
-        //if at beginning
-        if (xPos <= B2DVars.START_WIDTH + SheepJump.V_WIDTH / 4)
-                xPos = B2DVars.START_WIDTH + SheepJump.V_WIDTH / 4;
-        //if at end
-        else if (xPos >= B2DVars.END_WIDTH)
-                xPos = B2DVars.END_WIDTH;
         //update position
         cam.position.set(
                 xPos,
@@ -158,12 +163,12 @@ public class Play extends com.gameclock.game.State.GameState {
         for (Obstacle obstacle : obstacles)
                 obstacle.render(sb);
         //draw box2d world
-        b2dCam.position.set(
-                xPos,
-                SheepJump.V_HEIGHT / 2,
-                0);
-        b2dCam.update();
-        dDebugRenderer.render(world, b2dCam.combined);
+//        b2dCam.position.set(
+//                xPos,
+//                SheepJump.V_HEIGHT / 2,
+//                0);
+        //b2dCam.update();
+        //dDebugRenderer.render(world, b2dCam.combined);
     }
 
     @Override

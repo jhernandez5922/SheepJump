@@ -20,7 +20,7 @@ public class B2DVars {
     public static final float START_HEIGHT = 200;
     public static final float END_WIDTH = 5300;
 
-    public static final String DESKTOP_PATH = "";//"android/assets/";
+    public static final String DESKTOP_PATH = "android/assets/";
     public static final String PATH_TO_MAP = DESKTOP_PATH+"sheepJumpMap.tmx";
 
 

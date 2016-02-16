@@ -12,6 +12,8 @@ public class SJAnimation {
     private float delay;
     private int currentFrame;
     private int timesPlayed;
+    private boolean stationary;
+    private int stationaryFrame;
 
     public SJAnimation() {}
 
@@ -26,6 +28,7 @@ public class SJAnimation {
     public void setFrames(TextureRegion[] frames, float delay) {
         this.frames = frames;
         this.delay = delay;
+        stationaryFrame = 1;
         time = 0;
         currentFrame = 0;
         timesPlayed = 0;
@@ -41,6 +44,10 @@ public class SJAnimation {
 
     private void step() {
         time -= delay;
+        if (stationary) {
+            currentFrame = stationaryFrame;
+            return;
+        }
         currentFrame++;
         if (currentFrame == frames.length) {
             currentFrame = 0;
@@ -50,6 +57,10 @@ public class SJAnimation {
 
     public TextureRegion getFrame() {
         return frames[currentFrame];
+    }
+
+    public void setStationary(boolean stationary) {
+        this.stationary = stationary;
     }
 
     public float getTimesPlayed() {

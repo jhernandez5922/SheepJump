@@ -18,5 +18,10 @@ public class Player extends B2DSprite {
         setAnimation(sprites, 1 / 12f);
     }
 
+    public void setStationary(boolean isStationary) {
+        animation.setStationary(isStationary);
+    }
+
+
 
 }
